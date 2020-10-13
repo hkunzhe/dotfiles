@@ -7,12 +7,12 @@ export ZSH="/home/hkz/.oh-my-zsh"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bullet-train"
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -64,14 +64,13 @@ ZSH_THEME="bullet-train"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-	archlinux
-	git
-)
+plugins=(git
+        zsh-syntax-highlighting
+	history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,6 +99,22 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/hkz/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/hkz/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/hkz/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/hkz/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 function proxy_off(){
      unset http_proxy
      unset https_proxy
@@ -119,9 +134,9 @@ function proxy_on() {
      echo -e "Turn on proxy"
 }
 
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
-fi
+export PATH=/usr/local/cuda-10.2/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+. /usr/share/autojump/autojump.sh
