@@ -70,10 +70,7 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git
-         zsh-syntax-highlighting
-         history-substring-search
-         z)
+plugins=(git history-substring-search sudo z zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -119,5 +116,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
