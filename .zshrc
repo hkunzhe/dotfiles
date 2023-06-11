@@ -99,7 +99,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias updatedb="sudo /usr/libexec/locate.updatedb"
+alias vim=nvim
+
+# https://github.com/tmux/tmux/issues/597
+TERM=xterm-256color
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -124,8 +127,5 @@ then
   autoload -Uz compinit
   compinit
 fi
-
-# https://github.com/tmux/tmux/issues/597
-TERM=xterm-256color
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
