@@ -1,4 +1,5 @@
 #!/bin/bash
+# [Update locate database on OS X (updatedb)](https://myunster.com/blog/macosx/57.html)
 pushd . > /dev/null
 cd /usr/libexec
 echo "Updating locate database..."
